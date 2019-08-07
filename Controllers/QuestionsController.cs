@@ -13,6 +13,11 @@ namespace interro.us.Controllers
     [ApiController]
     public class QuestionsController : ControllerBase
     {
+        readonly QuizContext context;
+        public QuestionsController(QuizContext context)
+        {
+            this.context = context;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<Models.Question>> Get()
@@ -30,7 +35,8 @@ namespace interro.us.Controllers
         [HttpPost]
         public void Post([FromBody]Models.Question question)
         {
-
+            context.Questions.Add(question);
+            context.SaveChanges();
         }
 
         
