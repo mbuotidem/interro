@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //import { ApiService } from './api.service'
 import { ActivatedRoute } from '@angular/router'
 import { ApiService } from '../api.service'
@@ -7,11 +7,18 @@ import { ApiService } from '../api.service'
   selector: 'questions',
   templateUrl: './questions.component.html',
 })
-export class QuestionsComponent {
+export class QuestionsComponent implements OnInit{
   
   question = {}
+  questions
 
   constructor(private api:ApiService){}
+
+  ngOnInit(){
+      this.api.getQuestions().subscribe(res => {
+          this.questions = res
+      })
+  }
 
   post(question) {
     this.api.postQuestion(question);

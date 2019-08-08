@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { ApiService } from './api.service'
+import { QuestionsComponent } from './questions/questions.component';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -26,7 +28,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    QuestionComponent
+    QuestionComponent,
+    QuestionsComponent
     
   ],
   imports: [
@@ -37,6 +40,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     MatButtonModule,
     MatInputModule,
     MatCardModule,
+    MatListModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
