@@ -3,7 +3,8 @@ import { QuestionComponent } from '../questions/question.component';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  //templateUrl: './home.component.html',
+  template:'<quiz></quiz><quizzes></quizzes>'
 })
 export class HomeComponent {
 }

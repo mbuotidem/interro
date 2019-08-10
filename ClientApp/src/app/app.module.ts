@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { ApiService } from './api.service'
 import { QuestionsComponent } from './questions/questions.component';
 import { MatListModule } from '@angular/material/list';
+import { QuizComponent } from './quizzes/quiz.component';
+import { QuizzesComponent } from './quizzes/quizzes.component';
 
 
 
@@ -29,7 +31,9 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     CounterComponent,
     FetchDataComponent,
     QuestionComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    QuizComponent,
+    QuizzesComponent
     
   ],
   imports: [
@@ -45,6 +49,12 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'question', component: QuestionComponent },
+      { path: 'question/:quizId', component: QuestionComponent },
+      { path: 'questions', component: QuestionsComponent },
+      { path: 'quiz', component: QuizComponent },
+      { path: 'quizzes', component: QuizzesComponent }
+      
       
     ])
   ],
