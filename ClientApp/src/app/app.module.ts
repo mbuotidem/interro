@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { MatInputModule } from '@angular/material/input';
@@ -11,7 +11,11 @@ import { QuestionsComponent } from './questions/questions.component';
 import { MatListModule } from '@angular/material/list';
 import { QuizComponent } from './quizzes/quiz.component';
 import { QuizzesComponent } from './quizzes/quizzes.component';
-
+import { RegisterComponent } from './register/register.component'
+import { AuthService } from './register/auth.service'
+import { AuthInterceptor } from './register/auth.interceptor'
+import { LoginComponent } from './register/login.component'
+import { PlayComponent } from './quizzes/play.component'
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,26 +24,27 @@ import { QuestionComponent } from './questions/question.component';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     QuestionComponent,
     QuestionsComponent,
     QuizComponent,
-    QuizzesComponent
+    QuizzesComponent,
+    RegisterComponent,
+    LoginComponent,
+    PlayComponent
     
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
@@ -47,18 +52,25 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     MatListModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'question', component: QuestionComponent },
+      //{ path: 'question', component: QuestionComponent },
       { path: 'question/:quizId', component: QuestionComponent },
       { path: 'questions', component: QuestionsComponent },
       { path: 'quiz', component: QuizComponent },
-      { path: 'quizzes', component: QuizzesComponent }
+      { path: 'quizzes', component: QuizzesComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'play', component: PlayComponent },
+      { path: '**', component: HomeComponent }
+      
       
       
     ])
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

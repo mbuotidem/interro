@@ -3,19 +3,20 @@ import { FormBuilder } from '@angular/forms'
 import { ApiService } from '../api.service'
 
 @Component({
-  selector: 'quiz',
-  templateUrl: './quiz.component.html',
+  selector: 'play',
+  templateUrl: './play.component.html',
 })
-export class QuizComponent implements OnInit {
+export class PlayComponent implements OnInit {
 
-  quiz = {}
+  quizzes
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.api.quizSelected.subscribe(quiz => this.quiz = quiz)
-    
+    this.api.getAllQuizzes().subscribe(res => {
+      this.quizzes = res
+    })
   }
 
-  }
+}
 

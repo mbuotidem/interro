@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using interro.us;
 using interro.us.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace interro.us.Controllers
 {
@@ -22,9 +23,19 @@ namespace interro.us.Controllers
         }
 
         // GET: api/Quizzes
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Quiz>>> GetQuiz()
         {
+            var userId = HttpContext.User.Claims.First().Value;
+            return await _context.Quiz.Where(q => q.OwnerId == userId).ToListAsync();
+        }
+
+        // GET: api/Quizzes/all
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<Quiz>>> GetAllQuizzes()
+        {
+            
             return await _context.Quiz.ToListAsync();
         }
 
@@ -72,10 +83,21 @@ namespace interro.us.Controllers
             return NoContent();
         }
 
+
         // POST: api/Quizzes
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Quiz>> PostQuiz(Quiz quiz)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userId = HttpContext.User.Claims.First().Value;
+
+            quiz.OwnerId = userId;
+            
             _context.Quiz.Add(quiz);
             await _context.SaveChangesAsync();
 
