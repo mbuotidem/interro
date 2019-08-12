@@ -3,26 +3,29 @@
     <div class="container">
       <a class="navbar-brand" [routerLink]='["/"]'>interro.us</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded" (click)="toggle()">
+              [attr.aria-expanded]="isExpanded" (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
+        <a class="nav-link text-dark" [routerLink]='["/play"]'>Play Quiz</a>
+      
       <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]='{"show": isExpanded}'>
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf= "!auth.isAuthenticated" [routerLink]='["/register"]'>Register</a>
+            <a class="nav-link text-dark" *ngIf="!auth.isAuthenticated" [routerLink]='["/register"]'>Register</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf= "!auth.isAuthenticated" [routerLink]='["/login"]'>Login</a>
+            <a class="nav-link text-dark" *ngIf="!auth.isAuthenticated" [routerLink]='["/login"]'>Login</a>
           </li>
           <li class="nav-item clickLink" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf= "auth.isAuthenticated" (click)="auth.logout()">Logout</a>
+            <a class="nav-link text-dark" *ngIf="auth.isAuthenticated" (click)="auth.logout()">Logout</a>
           </li>
           <!--<li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/counter"]'>Counter</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/fetch-data"]'>Fetch data</a>
-          </li>-->
+        <a class="nav-link text-dark" [routerLink]='["/counter"]'>Counter</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link text-dark" [routerLink]='["/fetch-data"]'>Fetch data</a>
+      </li>-->
         </ul>
       </div>
     </div>

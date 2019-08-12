@@ -16,6 +16,11 @@ import { AuthService } from './register/auth.service'
 import { AuthInterceptor } from './register/auth.interceptor'
 import { LoginComponent } from './register/login.component'
 import { PlayComponent } from './quizzes/play.component'
+import { PlayQuizComponent } from './quizzes/playQuiz.component'
+import { MatExpansionModule } from '@angular/material'
+import { MatRadioModule } from '@angular/material'
+import { FinishedComponent } from './quizzes/finished.component'
+import { MatDialogModule } from '@angular/material'
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +29,7 @@ import { QuestionComponent } from './questions/question.component';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+
 
 
 @NgModule({
@@ -37,7 +43,9 @@ import { HomeComponent } from './home/home.component';
     QuizzesComponent,
     RegisterComponent,
     LoginComponent,
-    PlayComponent
+    PlayComponent,
+    PlayQuizComponent,
+    FinishedComponent
     
   ],
   imports: [
@@ -50,6 +58,9 @@ import { HomeComponent } from './home/home.component';
     MatInputModule,
     MatCardModule,
     MatListModule,
+    MatExpansionModule,
+    MatRadioModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       //{ path: 'question', component: QuestionComponent },
@@ -60,6 +71,7 @@ import { HomeComponent } from './home/home.component';
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'play', component: PlayComponent },
+      { path: 'playQuiz/:quizId', component: PlayQuizComponent },
       { path: '**', component: HomeComponent }
       
       
@@ -71,6 +83,7 @@ import { HomeComponent } from './home/home.component';
     useClass: AuthInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FinishedComponent]
 })
 export class AppModule { }
