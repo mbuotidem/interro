@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class QuestionComponent implements OnInit {
 
-  question = {};
+  question = {} as any;
   quizId;
 
   constructor(private api: ApiService, private route: ActivatedRoute) { }
@@ -19,11 +19,10 @@ export class QuestionComponent implements OnInit {
     
     this.quizId = this.route.snapshot.paramMap.get('quizId');
     this.api.questionSelected.subscribe(question => this.question = question);
-    console.log(this.quizId);
+    this.question.QuizId = Number(this.quizId);
   }
 
   post(question) {
-    question.quizId = this.quizId;
     this.api.postQuestion(question);
   }
 

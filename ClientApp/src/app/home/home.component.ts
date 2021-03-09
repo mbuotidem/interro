@@ -7,5 +7,5 @@ import { AuthService } from '../register/auth.service'
   //template:'<quiz></quiz><quizzes></quizzes>'
 })
 export class HomeComponent {
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using interro.us.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +34,7 @@ namespace interro.us.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Models.Question question)
+        public async Task<ActionResult<Question>> Post([FromBody]Models.Question question)
         {
             var quiz = context.Quiz.SingleOrDefault(q => q.ID == question.QuizId);
 

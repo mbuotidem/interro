@@ -7,7 +7,7 @@ import { ApiService } from '../api.service'
 })
 export class QuizzesComponent implements OnInit {
 
-  quiz = {}
+  quiz = {} as any;
   quizzes
 
   constructor(private api: ApiService) { }

@@ -8,7 +8,7 @@ import { AuthService } from '../register/auth.service'
 })
 export class NavMenuComponent {
 
-  constructor(private auth: AuthService) {}
+  constructor(public auth: AuthService) {}
   isExpanded = false;
 
   collapse() {

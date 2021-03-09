@@ -33,6 +33,7 @@ namespace interro.us.Controllers
 
         // GET: api/Quizzes/all
         [HttpGet("all")]
+        [HttpGet("quizzes")]
         public async Task<ActionResult<IEnumerable<Quiz>>> GetAllQuizzes()
         {
             

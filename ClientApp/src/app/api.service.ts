@@ -18,25 +18,17 @@ export class ApiService {
 
   getQuestions(quizId) {
     return this.http.get(`/api/questions/${quizId}`);
-    //`${this.baseUrl}/api/questions/${quizId}`
-    //`https://localhost:44353/api/questions/${quizId}`
   }
 
   getQuizzes() {
     return this.http.get(`/api/quizzes`);
-    //`${this.baseUrl}/api/quizzes`
-    //'https://localhost:44353/api/quizzes'
   }
 
   getAllQuizzes() {
     return this.http.get(`/api/quizzes/all`);
-    //`${this.baseUrl}/api/quizzes/all`
-    //'https://localhost:44353/api/quizzes/all'
   }
   postQuestion(question) {
     this.http.post(`/api/questions`, question).subscribe(res => {
-      //`${this.baseUrl}/api/questions`
-      //'https://localhost:44353/api/questions'
       console.log(res);
     });
 
@@ -44,24 +36,18 @@ export class ApiService {
 
   putQuestion(question) {
     this.http.put(`/api/questions/${question.id}`, question).subscribe(res => {
-//`${this.baseUrl}/api/questions/${question.id}`
-//`https://localhost:44353/api/questions/${question.id}`
       console.log(res);
     });
   }
 
   postQuiz(quiz) {
     this.http.post(`/api/quizzes`, quiz).subscribe(res => {
-      //`${this.baseUrl}/api/quizzes`
-      //'https://localhost:44353/api/quizzes'
       console.log(res);
     });
   }
 
   putQuiz(quiz) {
     this.http.put(`/api/quizzes/${quiz.id}`, quiz).subscribe(res => {
-      //`${this.baseUrl}/api/quizzes/${quiz.id}`
-      //`https://localhost:44353/api/quizzes/${quiz.id}`
       console.log(res);
     });
   }
